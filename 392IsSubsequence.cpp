@@ -8,6 +8,11 @@ public:
         int sIndex = 0;
         // Iterate through t
         for(int i = 0; i < t.size(); i++) {
+            // Add this conditional to improve runtime
+            if(sIndex == s.size()) {
+            // Then s is a subsequence
+            return true;
+            }
             // Matching character so we can increment s's iterator
             if(s[sIndex] == t[i]) {
                 sIndex += 1;
