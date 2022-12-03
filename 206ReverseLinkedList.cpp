@@ -14,6 +14,7 @@ public:
         // Initial idea: A stack is a lifo data structure that could 
         // reverse the list, i.e. add the nodes in the stack one by one
         // then pop the stack and new list created will be the reversed
+        /**
         // Get an unchanging reference to the solution linked list
         ListNode* reversedList = new ListNode(-1);
         // Iterator to capture nodes from the stack
@@ -37,5 +38,23 @@ public:
         }
         // When exited second while loop then completed so return reference
         return reversedList->next;
+        */
+        // Suggested idea: Use variables to hold previous node of the list and
+        // change the list at each step with a one pass through the linked list
+        // Initialize previous and iterator variables
+        ListNode* prev = nullptr;
+        ListNode* itr = head;
+        while(itr != nullptr) {
+            // Create a temp variable to get the next node so we don't lose the linked list
+            ListNode* temp = itr->next;
+            // Now set the next to the previous node
+            itr->next = prev;
+            // Iterate both prev and temp
+            prev = itr;
+            itr = temp;
+        }
+        // when exited while loop we're done so return prev which should be the start of
+        // the reversed list at this point
+        return prev;
     }
 };
