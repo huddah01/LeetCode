@@ -3,7 +3,8 @@ public:
     int pivotIndex(vector<int>& nums) {
         /**
         // Brute force approach of checking every element to see if it is a valid
-        // pivot index
+        // pivot index 
+        // idea was slow and did unnecessary calculation of right sum
         // Leftsum and rightsum counters
         int leftsum;
         int rightsum;
