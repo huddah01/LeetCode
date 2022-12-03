@@ -14,6 +14,8 @@ public:
         // Initial idea: A stack is a lifo data structure that could 
         // reverse the list, i.e. add the nodes in the stack one by one
         // then pop the stack and new list created will be the reversed
+        // This idea does two passes of n one to fill the stack and one to empty
+        // Also creating new nodes and new stacks will use more memory
         /**
         // Get an unchanging reference to the solution linked list
         ListNode* reversedList = new ListNode(-1);
