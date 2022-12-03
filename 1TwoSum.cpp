@@ -2,6 +2,7 @@ public:
     vector<int> twoSum(vector<int>& nums, int target) {
         /**
         // Initialize vector
+        // Idea was slow and straightforward
         vector<int> sum;
         // Nested for loop to go through everything
         for(int i = 0; i < nums.size() - 1; i++) {
