@@ -48,7 +48,7 @@ public:
         while(!nodeStack.empty()) {
             // Hold temp variable for the top of stack
             Node* temp = nodeStack.top();
-            // There is a case where nullptr is added to the stack in which case we break
+            // There is a case where we have 0 nodes thus we push a nullptr onto the stack
             if(temp == nullptr) {
                 break;
             }
