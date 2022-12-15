@@ -1,40 +1,33 @@
+class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        /**
-        // Initialize vector
-        // Idea was slow and straightforward
-        vector<int> sum;
-        // Nested for loop to go through everything
-        for(int i = 0; i < nums.size() - 1; i++) {
-            for(int j = i + 1; j < nums.size(); j++) {
-                if(nums[i] + nums[j] == target) {
-                    sum.insert(sum.begin(), i);
-                    sum.insert(sum.begin(), j);
-                }
-            }
-        }
-        // Return sum
-        return sum;
-        */
-        // Initialize hash map
-        unordered_map<int, int> map;
-        // Initialize vector
-        vector<int> sum;
-        
-        // Insert elements
+        // Use a hashmap to find complements, we map the number to it's complement
+        // If we find the complement in the hashmap then we found our solution
+
+        // Create a solution vector and a hashmap for complements
+        vector<int> soln;
+        unordered_map<int, int> complements;
+
+        // Insert the elements map to it's index
         for(int i = 0; i < nums.size(); i++) {
-            map[nums[i]] = i;
+            complements[nums[i]] = i;
         }
-        // Check if complement exists and return
+
+        // Now iterate through the list 
         for(int i = 0; i < nums.size(); i++) {
+            // Store the complement
             int complement = target - nums[i];
-            if(map.find(complement) != map.end() && map[complement] != i) {
-                sum.insert(sum.begin(), map[complement]);
-                sum.insert(sum.begin(), i);
-                return sum;
+            // Make sure that the complement exists within the hashmap and that the index of the
+            // Complement index must also not be the same as the current index
+            if(complements.find(complement) != complements.end() && i != complements[complement]) {
+                // We push the index into the solution vector then break because we have exactly
+                // One solution
+                soln.push_back(i);
+                soln.push_back(complements[complement]);
+                break;
             }
-            //map[nums[i]] = i;
         }
-        return sum;
+        // Return the solution vector
+        return soln;
     }
 };
