@@ -43,38 +43,48 @@ public:
         }
         return solnStr;
         */
+        // Initialize stack for the algorithm and solution string to return later
         stack<char> stack;
         string solnStr = "";
-
+        
+        // Go through the encoded string
         for(int i = 0; i < s.size(); i++) {
+            // If we find a closing bracket then we can the decode the string
             if(s[i] == ']') {
+                // We have a temp string to decode
                 string tempStr = "";
+                // While we don't see an open bracket we add to the temp string
                 while(stack.top() != '[') {
                     tempStr = stack.top() + tempStr;
                     stack.pop();
                 }
+                // Pop the open bracket
                 stack.pop();
+                // Now we capture the integer value
                 string tempInt = "";
                 while(!stack.empty() && isdigit(stack.top())) {
                     tempInt = stack.top() + tempInt;
                     stack.pop();
                 }
                 int tempInt2 = stoi(tempInt);
-                //int currSize = tempStr.size();
+                // Then we repeat the temp string temp int times because that's how the encoding works
                 for(int j = 0; j < tempInt2; j++) {
                     for(int k = 0; k < tempStr.size(); k++) {
                         stack.push(tempStr[k]);
                     }
                 }
             }
+            // Otherwise we can just push onto the stack
             else {
                 stack.push(s[i]);
             }
         }
+        // The stack was made with the decoded string in reverse so we pop the stack and prepend
         while(!stack.empty()) {
             solnStr = stack.top() + solnStr;
             stack.pop();
         }
+        // Return the solution string
         return solnStr;
     }
 };
